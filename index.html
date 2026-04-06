@@ -11,16 +11,16 @@
 </head>
 <body>
 
-  <!-- ── Header ── -->
+
   <header>
     <div class="brand">Peptide Babe Co 💗</div>
     <div class="brand-sub">✨ Your Wellness Bestie ✨</div>
   </header>
 
-  <!-- ── Main Layout ── -->
+
   <div class="layout">
 
-    <!-- ── Products Panel ── -->
+
     <div class="products-panel">
 
       <div class="search-wrap">
@@ -30,7 +30,7 @@
 
       <div id="productCatalog">
 
-        <!-- TIRZEPATIDE COMPLETE SET -->
+
         <div class="product-group" data-group>
           <div class="cat-header">
             <span class="cat-icon">💉</span>
@@ -105,7 +105,7 @@
         </div>
         <hr class="cat-divider">
 
-        <!-- TIRZEPATIDE VIALS ONLY -->
+
         <div class="product-group" data-group>
           <div class="cat-header">
             <span class="cat-icon">🧪</span>
@@ -179,7 +179,7 @@
         </div>
         <hr class="cat-divider">
 
-        <!-- RETATRUTIDE -->
+
         <div class="product-group" data-group>
           <div class="cat-header">
             <span class="cat-icon">✨</span>
@@ -226,7 +226,7 @@
         </div>
         <hr class="cat-divider">
 
-        <!-- MESOLIPO -->
+
         <div class="product-group" data-group>
           <div class="cat-header">
             <span class="cat-icon">🌸</span>
@@ -291,7 +291,7 @@
         </div>
         <hr class="cat-divider">
 
-        <!-- OTHER PEPS -->
+
         <div class="product-group" data-group>
           <div class="cat-header">
             <span class="cat-icon">🧬</span>
@@ -303,9 +303,9 @@
               <div class="card-name">GHKCU 50mg (3ml)</div><div class="card-price">1,100</div>
               <div class="qty-control"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-num">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div>
             </div>
-            <div class="product-card" data-name="GHK-Cu 100mg (10ml)" data-price="1250" onclick="toggleProduct(this)">
+            <div class="product-card" data-name="GHK-Cu 100mg (3ml)" data-price="1250" onclick="toggleProduct(this)">
               <div class="card-check">✓</div><span class="card-emoji">💎</span>
-              <div class="card-name">GHKCU 100mg (10ml)</div><div class="card-price">1,250</div>
+              <div class="card-name">GHKCU 100mg (3ml)</div><div class="card-price">1,250</div>
               <div class="qty-control"><button class="qty-btn" onclick="changeQty(event,this,-1)">−</button><span class="qty-num">1</span><button class="qty-btn" onclick="changeQty(event,this,1)">+</button></div>
             </div>
             <div class="product-card" data-name="GHK-Cu 50mg (5ml)" data-price="1400" onclick="toggleProduct(this)">
@@ -411,10 +411,10 @@
           </div>
         </div>
 
-      </div><!-- /#productCatalog -->
-    </div><!-- /.products-panel -->
+      </div>
+    </div>
 
-    <!-- ── Order Panel ── -->
+
     <div class="order-panel">
       <div class="panel-brand">My Order 🛒</div>
       <p class="panel-sub">💌 Fill in your details below</p>
@@ -466,6 +466,15 @@
         <textarea class="field-input" id="custNotes" placeholder="Anything else? 💕"></textarea>
       </div>
 
+      <div class="field-group">
+        <label class="field-label">📸 Payment Screenshot</label>
+        <input class="field-input" id="custImage" type="file" accept="image/*" onchange="handlePaymentScreenshot(event)">
+        <div class="image-preview" id="imagePreview" style="display:none;">
+          <img id="previewImg" src="" alt="Payment screenshot preview">
+          <button type="button" class="small-btn" onclick="removePaymentScreenshot()">Remove</button>
+        </div>
+      </div>
+
       <button class="submit-btn" id="submitBtn" onclick="submitOrder()" disabled>
         💗 Submit My Order 💗
       </button>
@@ -478,11 +487,39 @@
         <div class="ship-badge">📦 J&amp;T Express</div>
         <div class="ship-badge">🚗 Lalamove</div>
       </div>
-    </div><!-- /.order-panel -->
 
-  </div><!-- /.layout -->
 
-  <!-- ── Success Overlay ── -->
+      <div class="payment-section">
+        <div class="payment-header"><span>💳</span> Payment Options</div>
+        <div class="payment-tabs">
+          <button class="pay-tab active" onclick="showPayTab(this, 'gcash')">GCash</button>
+          <button class="pay-tab" onclick="showPayTab(this, 'gotyme')">GoTyme</button>
+        </div>
+        <div class="pay-content active" id="pay-gcash">
+          <div class="pay-info">
+            <div class="pay-logo">📱 <strong>GCash</strong></div>
+            <div class="pay-name">tinapa vdr</div>
+            <div class="pay-detail">K** L** L.</div>
+            <div class="pay-detail">Mobile: 0905 855 ••••</div>
+          </div>
+          <div class="qr-wrap"><img src="payment-gcash.png" alt="GCash QR" class="qr-img qr-gcash"></div>
+        </div>
+        <div class="pay-content" id="pay-gotyme">
+          <div class="pay-info">
+            <div class="pay-logo">🏦 <strong>GoTyme Bank</strong></div>
+            <div class="pay-name">KIM LYN LAMANO</div>
+            <div class="pay-detail">Account: ••••••••3474</div>
+          </div>
+          <div class="qr-wrap"><img src="payment-gotyme.png" alt="GoTyme QR" class="qr-img qr-gotyme"></div>
+        </div>
+        <div class="pay-note">📸 Send your payment screenshot to confirm your order!</div>
+      </div>
+
+    </div>
+
+  </div>
+
+
   <div class="success-overlay" id="successOverlay">
     <div class="success-box">
       <span class="success-icon">💗</span>
