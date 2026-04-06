@@ -2,11 +2,13 @@
 //  PEPTIDE BABE CO — Order Form Script
 // ============================================================
 
-const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzo9ZXAxz9Vt7VF1MzAo6K5bPkCMhucha8yjKzB1rYcC-iDhCxSt4-5wWBb997ImDT2/exec';
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw8o3AhN6cWrhbCtDzRKmDROCGCAKDH8eZ4H2HlFz0mWGeqpcuCB_KgaWvnjsBq-r4n/exec';
 
 // ── Cart State ──────────────────────────────────────────────
 const cart = {};
 const orders = [];
+let paymentImageData = '';
+let paymentImageName = '';
 
 // ── Toggle product selected / deselected ───────────────────
 function toggleProduct(card) {
@@ -94,7 +96,7 @@ function renderOrder() {
 
 function updateTotals(currentTotal, grandTotal) {
   document.getElementById('totalAmount').textContent = grandTotal.toLocaleString();
-  document.getElementById('submitBtn').disabled = grandTotal === 0;
+  document.getElementById('submitBtn').disabled = grandTotal === 0 || !paymentImageData;
 }
 
 function calculateGrandTotal() {
@@ -117,6 +119,11 @@ async function submitOrder() {
 
   if (!name || !contact) {
     alert('Please enter your name and contact details 💗');
+    return;
+  }
+
+  if (!paymentImageData) {
+    alert('Please upload your payment screenshot before submitting.');
     return;
   }
 
@@ -148,9 +155,12 @@ async function submitOrder() {
     items:     allItemLines.join(' | '),
     total:     '₱' + grandTotal.toLocaleString(),
     notes:     notes || '—',
-    timestamp: new Date().toLocaleString('en-PH', { timeZone: 'Asia/Manila' })
+    timestamp: new Date().toLocaleString('en-PH', { timeZone: 'Asia/Manila' }),
+    imageName: paymentImageName || '—',
+    imageData: paymentImageData || ''
   };
 
+  // Send as JSON via fetch (no-cors to avoid CORS errors with Google Apps Script)
   try {
     await fetch(GOOGLE_SCRIPT_URL, {
       method:  'POST',
@@ -162,7 +172,6 @@ async function submitOrder() {
     console.error('Submission error:', err);
   }
 
-  // Success
   submitBtn.disabled = false;
   submitBtn.textContent = '💗 Submit My Order 💗';
 
@@ -170,6 +179,51 @@ async function submitOrder() {
     `Thank you, ${name}! 🌸 Your order totalling ₱${grandTotal.toLocaleString()} has been received. We'll contact you at ${contact} shortly!`;
 
   document.getElementById('successOverlay').classList.add('show');
+}
+
+function handlePaymentScreenshot(event) {
+  const file = event.target.files[0];
+  const previewEl = document.getElementById('imagePreview');
+  const previewImg = document.getElementById('previewImg');
+
+  if (!file) {
+    paymentImageData = '';
+    paymentImageName = '';
+    previewEl.style.display = 'none';
+    previewImg.src = '';
+    updateTotals(0, calculateGrandTotal());
+    return;
+  }
+
+  if (file.size > 5 * 1024 * 1024) {
+    alert('Please choose an image smaller than 5MB.');
+    event.target.value = '';
+    updateTotals(0, calculateGrandTotal());
+    return;
+  }
+
+  paymentImageName = file.name;
+  const reader = new FileReader();
+  reader.onload = () => {
+    paymentImageData = reader.result;
+    previewImg.src = paymentImageData;
+    previewEl.style.display = 'flex';
+    updateTotals(0, calculateGrandTotal());
+  };
+  reader.readAsDataURL(file);
+}
+
+function removePaymentScreenshot() {
+  const fileInput = document.getElementById('custImage');
+  const previewEl = document.getElementById('imagePreview');
+  const previewImg = document.getElementById('previewImg');
+
+  fileInput.value = '';
+  paymentImageData = '';
+  paymentImageName = '';
+  previewImg.src = '';
+  previewEl.style.display = 'none';
+  updateTotals(0, calculateGrandTotal());
 }
 
 // ── Close success modal & reset ─────────────────────────────
@@ -188,9 +242,10 @@ function closeSuccess() {
   // Clear form
   ['custName', 'custContact', 'custAddress', 'custNotes']
     .forEach(id => document.getElementById(id).value = '');
+  removePaymentScreenshot();
 }
 
-// ── Search / filter products ────────────────────────────────
+// ── Add current cart to orders list ────────────────────────
 function addCurrentToOrders() {
   const keys = Object.keys(cart);
   if (keys.length === 0) {
@@ -238,3 +293,11 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+
+// ── Payment tab switcher ────────────────────────────────────
+function showPayTab(btn, id) {
+  document.querySelectorAll('.pay-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.pay-content').forEach(c => c.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('pay-' + id).classList.add('active');
+}
