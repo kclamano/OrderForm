@@ -560,6 +560,29 @@ textarea.field-input {
   justify-content: center;
 }
 
+.shipping-logo {
+  display: flex;
+  justify-content: center;
+  margin: 16px 0;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 20px;
+  box-shadow: 0 4px 16px rgba(244, 114, 182, 0.15);
+  backdrop-filter: blur(8px);
+}
+
+.ship-logo {
+  width: 260px;
+  height: auto;
+  max-width: 100%;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.shipping-logo {
+  padding: 16px;
+}
+
 .ship-badge {
   background: white;
   border: 2px solid var(--border);
