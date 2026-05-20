@@ -626,6 +626,43 @@
 </div>
 <div class="order-section-label">📦 Previous Orders</div>
 <div id="ordersList"></div>
+<div class="order-section-label">🚚 Shipping Option</div>
+
+<div class="shipping-options">
+
+  <button type="button"
+          class="shipping-option"
+          onclick="selectShipping('luzon')">
+
+    <strong>Luzon (J&amp;T)</strong>
+    <span id="shipLuzon">₱80</span>
+  </button>
+
+  <button type="button"
+          class="shipping-option"
+          onclick="selectShipping('visayas')">
+
+    <strong>Visayas (J&amp;T)</strong>
+    <span id="shipVisayas">₱100</span>
+  </button>
+
+  <button type="button"
+          class="shipping-option"
+          onclick="selectShipping('mindanao')">
+
+    <strong>Mindanao (J&amp;T)</strong>
+    <span id="shipMindanao">₱120</span>
+  </button>
+
+  <button type="button"
+          class="shipping-option"
+          onclick="selectShipping('other')">
+
+    <strong>Lalamove / Shopee Checkout</strong>
+    <span>₱0</span>
+  </button>
+
+</div>
 <div class="total-box">
 <div class="total-label">
 <div>Grand Total</div>

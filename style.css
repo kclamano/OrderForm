@@ -788,3 +788,67 @@ textarea.field-input {
   color: var(--muted);
   text-align: center;
 }
+
+.shipping-helper {
+  font-size: 11px;
+  color: var(--muted);
+  font-weight: 700;
+  margin: -4px 0 8px;
+  text-align: center;
+}
+
+.shipping-options {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.shipping-option {
+  background: white;
+  border: 2px solid rgba(244, 114, 182, 0.3);
+  border-radius: 12px;
+  padding: 10px 12px;
+  cursor: pointer;
+  font-family: 'Nunito', sans-serif;
+  color: var(--text);
+  transition: all 0.18s;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.shipping-option:hover {
+  border-color: var(--pink);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(244, 114, 182, 0.18);
+}
+
+.shipping-option.selected {
+  border-color: var(--purple);
+  box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.16);
+  background: linear-gradient(135deg, #FFF0F9, #F5F0FF);
+}
+
+.ship-region {
+  font-size: 12px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.ship-price {
+  font-size: 14px;
+  font-weight: 900;
+  color: var(--hot-pink);
+  white-space: nowrap;
+}
+
+.shipping-selected {
+  font-size: 11px;
+  color: var(--purple);
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 10px;
+}
