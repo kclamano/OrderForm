@@ -1,7 +1,3 @@
-/* ============================================================
-   PEPTIDE BABE CO — Stylesheet
-   ============================================================ */
-
 :root {
   --pink: #F472B6;
   --hot-pink: #EC4899;
@@ -16,14 +12,12 @@
   --card-bg: rgba(255, 255, 255, 0.85);
 }
 
-/* ── Reset ── */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* ── Body ── */
 body {
   background: linear-gradient(135deg, #FCE4F3 0%, #EDE4FF 40%, #FCE4F3 70%, #FEF3C7 100%);
   min-height: 100vh;
@@ -45,7 +39,6 @@ body::before {
   word-break: break-all;
 }
 
-/* ── Header ── */
 header {
   background: linear-gradient(135deg, #F472B6, #C084FC, #F472B6);
   background-size: 200% 200%;
@@ -98,7 +91,6 @@ header::after {
   text-transform: uppercase;
 }
 
-/* ── Layout ── */
 .layout {
   display: grid;
   grid-template-columns: 1fr 360px;
@@ -106,12 +98,10 @@ header::after {
   z-index: 1;
 }
 
-/* ── Products Panel ── */
 .products-panel {
   padding: 32px 28px;
 }
 
-/* Search */
 .search-wrap {
   margin-bottom: 28px;
   position: relative;
@@ -148,7 +138,6 @@ header::after {
   pointer-events: none;
 }
 
-/* Category */
 .product-group { margin-bottom: 32px; }
 
 .cat-header {
@@ -178,14 +167,12 @@ header::after {
   text-transform: uppercase;
 }
 
-/* Product Grid */
 .product-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
   gap: 10px;
 }
 
-/* Product Card */
 .product-card {
   background: var(--card-bg);
   border: 2px solid var(--border);
@@ -259,7 +246,6 @@ header::after {
   margin-right: 1px;
 }
 
-/* Qty Control */
 .qty-control {
   display: none;
   align-items: center;
@@ -302,7 +288,6 @@ header::after {
   margin: 4px 0 28px;
 }
 
-/* ── Order Panel ── */
 .order-panel {
   background: linear-gradient(180deg, #FDF0FA 0%, #F5EEFF 100%);
   border-left: 2px solid rgba(244, 114, 182, 0.2);
@@ -333,7 +318,6 @@ header::after {
   margin-bottom: 22px;
 }
 
-/* Form Fields */
 .field-group { margin-bottom: 14px; }
 
 .field-label {
@@ -402,7 +386,6 @@ textarea.field-input {
   background: rgba(244, 114, 182, 0.08);
 }
 
-/* Order Summary */
 .order-divider {
   border: none;
   border-top: 2px dashed rgba(244, 114, 182, 0.3);
@@ -472,7 +455,6 @@ textarea.field-input {
   white-space: nowrap;
 }
 
-/* Total */
 .total-box {
   background: linear-gradient(135deg, var(--hot-pink), var(--purple));
   border-radius: 16px;
@@ -508,7 +490,6 @@ textarea.field-input {
   font-weight: 900;
 }
 
-/* Submit Button */
 .submit-btn {
   margin-top: 16px;
   width: 100%;
@@ -538,7 +519,6 @@ textarea.field-input {
   cursor: not-allowed;
 }
 
-/* Note Box */
 .note-box {
   margin-top: 14px;
   background: rgba(244, 114, 182, 0.08);
@@ -552,7 +532,6 @@ textarea.field-input {
   text-align: center;
 }
 
-/* Shipping Row */
 .shipping-row {
   display: flex;
   gap: 8px;
@@ -596,7 +575,6 @@ textarea.field-input {
   gap: 4px;
 }
 
-/* ── Success Overlay ── */
 .success-overlay {
   display: none;
   position: fixed;
@@ -671,7 +649,6 @@ textarea.field-input {
 
 .success-close:hover { transform: scale(1.05); }
 
-/* ── Responsive ── */
 @media (max-width: 860px) {
   .layout {
     grid-template-columns: 1fr;
@@ -689,7 +666,6 @@ textarea.field-input {
   .products-panel { padding: 24px 16px; }
 }
 
-/* ── Payment Section ── */
 .payment-section {
   margin-top: 16px;
   background: white;
@@ -782,7 +758,6 @@ textarea.field-input {
   border-radius: 6px;
 }
 
-/* ── Payment QR Codes ── */
 .qr-gcash,
 .qr-gotyme,
 .qr-pnb {
@@ -790,14 +765,12 @@ textarea.field-input {
   max-width: 220px;
 }
 
-/* GoTyme QR is bottom-left area */
 .qr-gotyme {
   object-position: 0% 0%;
   height: 150px;
   max-width: 150px;
 }
 
-/* PNB QR is right side */
 .qr-pnb {
   object-position: 0% 0%;
   height: 170px;

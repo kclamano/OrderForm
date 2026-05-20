@@ -1,16 +1,10 @@
-// ============================================================
-//  PEPTIDE BABE CO — Order Form Script
-// ============================================================
-
 const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw8o3AhN6cWrhbCtDzRKmDROCGCAKDH8eZ4H2HlFz0mWGeqpcuCB_KgaWvnjsBq-r4n/exec';
 
-// ── Cart State ──────────────────────────────────────────────
 const cart = {};
 const orders = [];
 let paymentImageData = '';
 let paymentImageName = '';
 
-// ── Toggle product selected / deselected ───────────────────
 function toggleProduct(card) {
   const key = card.dataset.name;
 
@@ -30,7 +24,6 @@ function toggleProduct(card) {
   renderOrder();
 }
 
-// ── Change quantity ─────────────────────────────────────────
 function changeQty(e, btn, delta) {
   e.stopPropagation();
   const card = btn.closest('.product-card');
@@ -42,7 +35,6 @@ function changeQty(e, btn, delta) {
   renderOrder();
 }
 
-// ── Render order summary panel ──────────────────────────────
 function renderOrder() {
   const container = document.getElementById('orderItems');
   const keys      = Object.keys(cart);
@@ -110,7 +102,6 @@ function calculateGrandTotal() {
   return grand;
 }
 
-// ── Submit ALL orders to Google Sheets ──────────────────────
 async function submitOrder() {
   const name    = document.getElementById('custName').value.trim();
   const contact = document.getElementById('custContact').value.trim();
@@ -132,7 +123,6 @@ async function submitOrder() {
     return;
   }
 
-  // Flatten all orders + current cart
   let allItemLines = [];
   orders.forEach(order => allItemLines.push(...order.itemLines));
   const currentKeys = Object.keys(cart);
@@ -160,7 +150,6 @@ async function submitOrder() {
     imageData: paymentImageData || ''
   };
 
-  // Send as JSON via fetch (no-cors to avoid CORS errors with Google Apps Script)
   try {
     await fetch(GOOGLE_SCRIPT_URL, {
       method:  'POST',
@@ -226,11 +215,9 @@ function removePaymentScreenshot() {
   updateTotals(0, calculateGrandTotal());
 }
 
-// ── Close success modal & reset ─────────────────────────────
 function closeSuccess() {
   document.getElementById('successOverlay').classList.remove('show');
 
-  // Clear all orders and current cart
   orders.length = 0;
   Object.keys(cart).forEach(k => delete cart[k]);
   renderOrder();
@@ -245,7 +232,6 @@ function closeSuccess() {
   removePaymentScreenshot();
 }
 
-// ── Add current cart to orders list ────────────────────────
 function addCurrentToOrders() {
   const keys = Object.keys(cart);
   if (keys.length === 0) {
@@ -294,7 +280,6 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-// ── Payment tab switcher ────────────────────────────────────
 function showPayTab(btn, id) {
   document.querySelectorAll('.pay-tab').forEach(t => t.classList.remove('active'));
   document.querySelectorAll('.pay-content').forEach(c => c.classList.remove('active'));
