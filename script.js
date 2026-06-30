@@ -6,6 +6,28 @@ const orders = [];
 let paymentImageData = '';
 let paymentImageName = '';
 
+function iconBag(className = 'icon icon-sm') {
+  return `<svg class="${className}" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+    <path d="M6 7h13l-1.5 7.5a2 2 0 0 1-2 1.6H8a2 2 0 0 1-2-1.6L5 4H2" />
+    <circle cx="9" cy="19" r="1.5" fill="currentColor" stroke="none"></circle>
+    <circle cx="17" cy="19" r="1.5" fill="currentColor" stroke="none"></circle>
+  </svg>`;
+}
+
+function iconCart(className = 'icon icon-sm') {
+  return `<svg class="${className}" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+    <path d="M4 6h2l1.2 8.5A2 2 0 0 0 9.2 16h8.2a2 2 0 0 0 1.9-1.5L21 8H7.5" />
+    <circle cx="10" cy="19" r="1.5" fill="currentColor" stroke="none"></circle>
+    <circle cx="18" cy="19" r="1.5" fill="currentColor" stroke="none"></circle>
+  </svg>`;
+}
+
+function iconX(className = 'icon icon-sm') {
+  return `<svg class="${className}" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+    <path d="m7 7 10 10M17 7 7 17" />
+  </svg>`;
+}
+
 let shippingConfig = {
   luzon: { 1: 80, 2: 95, max: 120 },
   visayas: { 1: 100, 2: 140, max: 180 },
@@ -100,13 +122,17 @@ function scrollToCheckout() {
 function updateCheckoutAffordances(grandTotal) {
   const count = getTotalItemCount();
   const headerSummary = document.getElementById('headerSummary');
+  const orderCountBadge = document.getElementById('orderCountBadge');
   const mobileBar = document.getElementById('mobileCheckoutBar');
   const mobileCount = document.getElementById('mobileCheckoutCount');
   const mobileTotal = document.getElementById('mobileCheckoutTotal');
   const paymentSendAmount = document.getElementById('paymentSendAmount');
 
   if (headerSummary) {
-    headerSummary.innerHTML = `<span class="header-summary-icon">🛒</span><span>${count}</span>`;
+    headerSummary.innerHTML = `<span class="header-summary-icon">${iconBag('icon icon-sm')}</span><span>${count}</span>`;
+  }
+  if (orderCountBadge) {
+    orderCountBadge.textContent = count;
   }
 
   if (mobileBar && mobileCount && mobileTotal) {
@@ -240,7 +266,7 @@ function renderOrder() {
   if (!keys.length) {
     html = `
       <div class="empty-state" id="emptyState">
-        <div class="empty-state-icon">🛒</div>
+        <div class="empty-state-icon">${iconCart('icon icon-lg')}</div>
         No items yet
         <small>Browse products and tap Add</small>
       </div>`;
@@ -258,9 +284,14 @@ function renderOrder() {
               <div class="item-name">${item.name}</div>
             </div>
             <div class="item-subtitle">${item.name}</div>
-            <div class="item-qty">x${item.qty} @ ₱${item.price.toLocaleString()}</div>
+            <div class="item-qty">${item.qty} item${item.qty > 1 ? 's' : ''} · ₱${item.price.toLocaleString()} each</div>
             <div class="item-actions">
-              <button type="button" class="item-remove" onclick="toggleProduct(document.querySelector('.product-card[data-name=&quot;${item.name.replace(/"/g, '&quot;')}&quot;]'))">Remove</button>
+              <div class="qty-control" style="display:flex;">
+                <button type="button" class="qty-btn" onclick="changeQty(event,this,-1)">−</button>
+                <span class="qty-num">${item.qty}</span>
+                <button type="button" class="qty-btn" onclick="changeQty(event,this,1)">+</button>
+              </div>
+              <button type="button" class="item-remove" aria-label="Remove item" onclick="toggleProduct(document.querySelector('.product-card[data-name=&quot;${item.name.replace(/"/g, '&quot;')}&quot;]'))">${iconX('icon icon-sm')}</button>
             </div>
           </div>
           <div class="item-price">₱${sub.toLocaleString()}</div>
@@ -509,7 +540,11 @@ async function loadProductsFromJSON() {
       group.items.forEach(item => {
         catalogHTML += `
           <div class="product-card" data-name="${item.fullName}" data-price="${item.price}" onclick="toggleProduct(this)">
-            <div class="card-check">✓</div>
+            <div class="card-check" aria-hidden="true">
+              <svg class="icon icon-sm" viewBox="0 0 24 24" stroke="currentColor">
+                <path d="m5 12 4 4L19 6" />
+              </svg>
+            </div>
             <span class="card-emoji">${item.emoji}</span>
             <div class="card-name">${item.name}</div>
             <div class="card-fullname">${item.fullName}</div>

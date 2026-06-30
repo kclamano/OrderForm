@@ -34,10 +34,24 @@
           <div class="brand-sub">Your wellness, simplified</div>
         </div>
       </div>
-      <button type="button" class="header-summary" id="headerSummary" onclick="scrollToCheckout()">0 items · ₱0</button>
+      <button type="button" class="header-summary" id="headerSummary" onclick="scrollToCheckout()">
+        <span class="header-summary-icon" aria-hidden="true">
+          <svg class="icon icon-sm" viewBox="0 0 24 24" stroke="currentColor">
+            <path d="M6 7h13l-1.5 7.5a2 2 0 0 1-2 1.6H8a2 2 0 0 1-2-1.6L5 4H2" />
+            <circle cx="9" cy="19" r="1.5" fill="currentColor" stroke="none"></circle>
+            <circle cx="17" cy="19" r="1.5" fill="currentColor" stroke="none"></circle>
+          </svg>
+        </span>
+        <span>0</span>
+      </button>
     </header>
     <div class="search-wrap search-wrap--header">
-      <span class="search-icon">🔍</span>
+      <span class="search-icon" aria-hidden="true">
+        <svg class="icon icon-sm" viewBox="0 0 24 24" stroke="currentColor">
+          <circle cx="11" cy="11" r="6.5"></circle>
+          <path d="M16.25 16.25 20 20" />
+        </svg>
+      </span>
       <input class="search-input" id="searchInput" type="text" placeholder="Search products...">
     </div>
     <div class="category-strip" id="categoryStrip"></div>
@@ -51,11 +65,16 @@
 
     <div class="order-panel">
       <section class="panel-card panel-card--order">
-        <div class="panel-brand">My Order</div>
-        <p class="panel-sub">Browse products and tap Add</p>
+        <div class="panel-section-title panel-section-title--order">My Order <span class="order-count-badge" id="orderCountBadge">0</span></div>
         <div id="orderItems">
           <div class="empty-state" id="emptyState">
-            <span>🗂</span>
+            <span class="empty-state-icon" aria-hidden="true">
+              <svg class="icon icon-lg" viewBox="0 0 24 24" stroke="currentColor">
+                <path d="M4 7.5h16v10a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 17.5v-10Z"></path>
+                <path d="M4 10h16" />
+                <path d="M9 7.5V6.25A1.25 1.25 0 0 1 10.25 5h3.5A1.25 1.25 0 0 1 15 6.25V7.5" />
+              </svg>
+            </span>
             No items yet
             <small>Browse products and tap Add</small>
           </div>
@@ -89,32 +108,90 @@
 
       <section class="panel-card">
         <div class="panel-section-title">Shipping Option *</div>
+        <p class="panel-help">Select your area — this sets your shipping fee.</p>
         <div class="shipping-options">
           <button type="button" class="shipping-option" onclick="selectShipping('luzon')">
-            <strong>Luzon (J&amp;T)</strong> <span id="shipLuzon">₱0</span>
+            <span class="shipping-icon" aria-hidden="true">
+              <svg class="icon icon-sm" viewBox="0 0 24 24" stroke="currentColor">
+                <path d="M12 3 4.5 7v10L12 21l7.5-4V7L12 3Z" />
+                <path d="M4.5 7 12 11l7.5-4" />
+                <path d="M12 11v10" />
+              </svg>
+            </span>
+            <strong>Luzon (J&amp;T)</strong>
+            <span class="shipping-sub">J&amp;T Express</span>
+            <span id="shipLuzon">₱0</span>
           </button>
           <button type="button" class="shipping-option" onclick="selectShipping('visayas')">
-            <strong>Visayas (J&amp;T)</strong> <span id="shipVisayas">₱0</span>
+            <span class="shipping-icon" aria-hidden="true">
+              <svg class="icon icon-sm" viewBox="0 0 24 24" stroke="currentColor">
+                <path d="M12 3 4.5 7v10L12 21l7.5-4V7L12 3Z" />
+                <path d="M4.5 7 12 11l7.5-4" />
+                <path d="M12 11v10" />
+              </svg>
+            </span>
+            <strong>Visayas (J&amp;T)</strong>
+            <span class="shipping-sub">J&amp;T Express</span>
+            <span id="shipVisayas">₱0</span>
           </button>
           <button type="button" class="shipping-option" onclick="selectShipping('mindanao')">
-            <strong>Mindanao (J&amp;T)</strong> <span id="shipMindanao">₱0</span>
+            <span class="shipping-icon" aria-hidden="true">
+              <svg class="icon icon-sm" viewBox="0 0 24 24" stroke="currentColor">
+                <path d="M12 3 4.5 7v10L12 21l7.5-4V7L12 3Z" />
+                <path d="M4.5 7 12 11l7.5-4" />
+                <path d="M12 11v10" />
+              </svg>
+            </span>
+            <strong>Mindanao (J&amp;T)</strong>
+            <span class="shipping-sub">J&amp;T Express</span>
+            <span id="shipMindanao">₱0</span>
           </button>
           <button type="button" class="shipping-option" onclick="selectShipping('other')">
-            <strong>Lalamove / Shopee Checkout</strong> <span>₱0</span>
+            <span class="shipping-icon" aria-hidden="true">
+              <svg class="icon icon-sm" viewBox="0 0 24 24" stroke="currentColor">
+                <path d="M6 16.5a2.5 2.5 0 1 0 0 .01z" />
+                <path d="M17 16.5a2.5 2.5 0 1 0 0 .01z" />
+                <path d="M8 16.5h6l2-5h2" />
+                <path d="M13 11.5H9.5L8 16.5" />
+                <path d="M14.5 10.5h2.5" />
+              </svg>
+            </span>
+            <strong>Lalamove / Shopee Checkout</strong>
+            <span class="shipping-sub">Fee arranged separately</span>
+            <span>₱0</span>
           </button>
         </div>
       </section>
 
       <section class="panel-card">
         <div class="panel-section-title">Delivery Methods</div>
+        <p class="panel-help">Static delivery info for reference.</p>
         <div class="delivery-methods">
           <div class="delivery-method-card">
+            <div class="delivery-method-icon" aria-hidden="true">
+              <svg class="icon icon-md" viewBox="0 0 24 24" stroke="currentColor">
+                <path d="M12 3 4.5 7v10L12 21l7.5-4V7L12 3Z" />
+                <path d="M4.5 7 12 11l7.5-4" />
+                <path d="M12 11v10" />
+              </svg>
+            </div>
             <div class="delivery-method-title">J&amp;T Express</div>
-            <div class="delivery-method-sub">Standard courier delivery</div>
+            <div class="delivery-method-sub">Nationwide delivery</div>
+            <div class="delivery-method-note">3-7 business days</div>
           </div>
           <div class="delivery-method-card">
+            <div class="delivery-method-icon" aria-hidden="true">
+              <svg class="icon icon-md" viewBox="0 0 24 24" stroke="currentColor">
+                <path d="M6 16.5a2.5 2.5 0 1 0 0 .01z" />
+                <path d="M17 16.5a2.5 2.5 0 1 0 0 .01z" />
+                <path d="M8 16.5h6l2-5h2" />
+                <path d="M13 11.5H9.5L8 16.5" />
+                <path d="M14.5 10.5h2.5" />
+              </svg>
+            </div>
             <div class="delivery-method-title">Lalamove</div>
-            <div class="delivery-method-sub">On-demand local delivery</div>
+            <div class="delivery-method-sub">Same-day delivery</div>
+            <div class="delivery-method-note">Metro Manila only</div>
           </div>
         </div>
       </section>
@@ -133,40 +210,37 @@
       <button class="submit-btn submit-btn--secondary submit-btn--warm" onclick="startNewOrder()">↺ Start New Order</button>
 
       <section class="panel-card">
-        <div class="panel-section-title">Payment</div>
+        <div class="panel-section-title">GCash Payment</div>
+          <div class="gcash-card">
+          <div class="gcash-avatar">G</div>
+          <div class="gcash-copy">
+            <div class="gcash-label">Send payment to</div>
+            <div class="gcash-number">09XX-XXX-XXXX</div>
+            <div class="gcash-name">Peptide Babe Co.</div>
+            <p class="gcash-note">Send the exact amount then upload your payment screenshot below.</p>
+          </div>
+          <div class="payment-send-amount" id="paymentSendAmount">₱0</div>
+        </div>
         <div class="field-group">
-          <label class="field-label">Payment Screenshot</label>
-          <input class="field-input" id="custImage" type="file" accept="image/*" onchange="handlePaymentScreenshot(event)">
+          <label class="field-label">Payment Screenshot *</label>
+          <label class="upload-dropzone" for="custImage">
+            <span class="upload-icon" aria-hidden="true">
+              <svg class="icon icon-lg" viewBox="0 0 24 24" stroke="currentColor">
+                <path d="M12 16V5" />
+                <path d="M8.5 8.5 12 5l3.5 3.5" />
+                <path d="M5 14.5v3A1.5 1.5 0 0 0 6.5 19h11A1.5 1.5 0 0 0 19 17.5v-3" />
+              </svg>
+            </span>
+            <span class="upload-title">Tap to upload screenshot</span>
+            <span class="upload-sub">PNG, JPG supported</span>
+          </label>
+          <input class="file-input" id="custImage" type="file" accept="image/*" onchange="handlePaymentScreenshot(event)">
           <div class="image-preview" id="imagePreview" style="display:none;">
             <img id="previewImg" src="" alt="Payment screenshot preview">
             <button type="button" class="small-btn" onclick="removePaymentScreenshot()">Remove</button>
           </div>
         </div>
-        <div class="payment-section">
-          <div class="payment-header"><span>💳</span> Payment Options</div>
-          <div class="payment-send">Send payment to</div>
-          <div class="payment-send-row">
-            <div>
-              <div class="pay-name">tinapa vdr</div>
-              <div class="pay-detail">K** L** L.</div>
-              <div class="pay-detail">Mobile: 0905 855 ••••</div>
-            </div>
-            <div class="payment-send-amount" id="paymentSendAmount">₱0</div>
-          </div>
-          <div class="payment-tabs">
-            <button class="pay-tab active" onclick="showPayTab(this, 'gcash')">GCash</button>
-          </div>
-          <div class="pay-content active" id="pay-gcash">
-            <div class="pay-info">
-              <div class="pay-logo">📱 <strong>GCash</strong></div>
-              <div class="pay-name">tinapa vdr</div>
-              <div class="pay-detail">K** L** L.</div>
-              <div class="pay-detail">Mobile: 0905 855 ••••</div>
-            </div>
-            <div class="qr-wrap"><img src="payment-gcash.png" alt="GCash QR" class="qr-img qr-gcash"></div>
-          </div>
-        </div>
-        <div class="note-box" style="margin-top: 10px;">📸 Send your payment screenshot to confirm your order!</div>
+        <div class="note-box" style="margin-top: 10px;">Send your payment screenshot to confirm your order!</div>
       </section>
 
       <button class="submit-btn" id="submitBtn" onclick="submitOrder()" disabled>Submit My Order</button>
@@ -181,10 +255,14 @@
 
   <div class="success-overlay" id="successOverlay">
     <div class="success-box">
-      <span class="success-icon">💗</span>
+      <span class="success-icon" aria-hidden="true">
+        <svg class="icon icon-lg icon-pink" viewBox="0 0 24 24" stroke="currentColor">
+          <path d="M12 20.5s-6.5-4.2-8.5-8.2A4.8 4.8 0 0 1 12 6.3a4.8 4.8 0 0 1 8.5 6c-2 4-8.5 8.2-8.5 8.2Z" />
+        </svg>
+      </span>
       <h2>Yay, order sent!</h2>
       <p id="successMsg">Thank you so much! We'll message you soon to confirm your order and payment. 🌸</p>
-      <button class="success-close" onclick="closeSuccess()">✨ Done ✨</button>
+      <button class="success-close" onclick="closeSuccess()">Done</button>
     </div>
   </div>
 
