@@ -209,21 +209,42 @@
       <button class="submit-btn submit-btn--secondary" onclick="addCurrentToOrders()">+ Add Current to Orders</button>
       <button class="submit-btn submit-btn--secondary submit-btn--warm" onclick="startNewOrder()">↺ Start New Order</button>
 
-      <section class="panel-card">
-        <div class="panel-section-title">GCash Payment</div>
-        <div class="gcash-card">
-          <div class="gcash-avatar">G</div>
-          <div class="gcash-copy">
-            <div class="gcash-label">Send payment to</div>
-            <div class="gcash-number">09XX-XXX-XXXX</div>
-            <div class="gcash-name">Peptide Babe Co.</div>
-            <p class="gcash-note">Send the exact amount then upload your payment screenshot below.</p>
+      <section class="panel-card payment-section">
+        <div class="panel-section-title">Payment</div>
+        <div class="payment-send-row">
+          <div class="payment-send">
+            <div>Send exact amount</div>
+            <div class="payment-send-sub">Choose your QR payment method below</div>
           </div>
           <div class="payment-send-amount" id="paymentSendAmount">₱0</div>
         </div>
-        <div class="qr-wrap qr-wrap--gcash" aria-label="GCash QR code">
-          <img src="payment-gcash.png" alt="GCash QR code" class="qr-img qr-gcash">
+
+        <div class="payment-tabs" role="tablist" aria-label="Payment methods">
+          <button type="button" class="pay-tab active" onclick="showPayTab(this, 'gcash')">GCash</button>
+          <button type="button" class="pay-tab" onclick="showPayTab(this, 'gotyme')">GoTyme</button>
         </div>
+
+        <div class="pay-content active" id="pay-gcash" role="tabpanel" aria-label="GCash payment details">
+          <div class="gcash-card">
+            <div class="gcash-avatar">G</div>
+            <div class="gcash-copy">
+              <div class="gcash-label">Send payment to</div>
+              <div class="gcash-number">09XX-XXX-XXXX</div>
+              <div class="gcash-name">Peptide Babe Co.</div>
+              <p class="gcash-note">Send the exact amount then upload your payment screenshot below.</p>
+            </div>
+          </div>
+          <div class="qr-wrap qr-wrap--gcash" aria-label="GCash QR code">
+            <img src="payment-gcash.png" alt="GCash QR code" class="qr-img qr-gcash">
+          </div>
+        </div>
+
+        <div class="pay-content" id="pay-gotyme" role="tabpanel" aria-label="GoTyme payment QR code">
+          <div class="qr-wrap qr-wrap--gotyme" aria-label="GoTyme QR code">
+            <img src="payment-gotyme.png" alt="GoTyme QR code" class="qr-img qr-gotyme">
+          </div>
+        </div>
+
         <div class="field-group">
           <label class="field-label">Payment Screenshot *</label>
           <label class="upload-dropzone" for="custImage">

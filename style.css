@@ -205,10 +205,12 @@ textarea.field-input{min-height:74px;resize:vertical}
 .payment-section{margin-top:2px;border:1px solid rgba(215,93,142,.14);border-radius:18px;overflow:hidden;background:#fff}
 .payment-header{padding:12px 14px;border-bottom:1px solid rgba(215,93,142,.08)}
 .payment-send{padding:12px 14px 0;font-size:.72rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#6d5a86}
+.payment-send-sub{margin-top:4px;font-size:.72rem;font-weight:600;letter-spacing:0;text-transform:none;color:var(--muted)}
 .payment-send-row{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;padding:10px 14px 0}
 .payment-send-amount{font-size:1.15rem;font-weight:900;color:var(--pink);white-space:nowrap}
 .payment-tabs{display:flex;padding:10px 14px 0;border-bottom:1px solid rgba(215,93,142,.08)}
 .pay-tab{border:none;background:none;padding:8px 14px 10px;border-bottom:2px solid transparent;color:var(--muted);font-weight:800}
+.pay-tab:hover{color:var(--ink)}
 .pay-tab.active{color:var(--pink);border-bottom-color:var(--pink)}
 .pay-content{display:none;padding:12px 14px 14px}
 .pay-content.active{display:block}
@@ -225,7 +227,14 @@ textarea.field-input{min-height:74px;resize:vertical}
   background:linear-gradient(180deg,#fff 0%,#fff7fb 100%);
   box-shadow:var(--shadow);
 }
+.qr-wrap--gotyme{
+  padding:14px;
+  border-style:solid;
+  background:linear-gradient(180deg,#fff 0%,#fff7fb 100%);
+  box-shadow:var(--shadow);
+}
 .qr-gcash{max-width:240px}
+.qr-gotyme{max-width:240px}
 
 .note-box{background:#f6eef7;border:1px solid rgba(215,93,142,.12);border-radius:14px;padding:10px 12px;color:#6d5a86;font-size:.8rem;line-height:1.55;text-align:center}
 
@@ -261,6 +270,24 @@ textarea.field-input{min-height:74px;resize:vertical}
   .order-panel{position:static;max-height:none;border-left:none;border-top:1px solid rgba(215,93,142,.09);width:100%;max-width:100%}
   .layout{padding-top:calc(var(--top-shell-height-mobile) + 22px)}
 }
+@media (min-width:1024px){
+  .order-panel{
+    height:calc(100vh - 66px);
+    max-height:none;
+    overflow-y:auto;
+    overflow-x:hidden;
+    align-self:start;
+  }
+  .payment-section{
+    overflow:visible;
+  }
+  .pay-content{
+    display:none;
+  }
+  .pay-content.active{
+    display:block;
+  }
+}
 @media (max-width:767px){
   .top-shell{align-items:stretch}
   .top-shell > header{padding:8px 12px 4px}
@@ -293,7 +320,9 @@ textarea.field-input{min-height:74px;resize:vertical}
   .shipping-options{grid-template-columns:1fr 1fr}
   .upload-dropzone{padding:18px 14px}
   .qr-wrap--gcash{padding:12px}
+  .qr-wrap--gotyme{padding:12px}
   .qr-gcash{max-width:200px}
+  .qr-gotyme{max-width:200px}
 }
 @media (min-width:1024px){
   .layout{padding-top:calc(var(--top-shell-height-desktop) + 28px)}
