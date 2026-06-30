@@ -218,6 +218,14 @@ textarea.field-input{min-height:74px;resize:vertical}
 .pay-detail{font-size:.76rem;color:var(--muted)}
 .qr-wrap{display:flex;justify-content:center;padding:10px;background:#fff;border:1px dashed rgba(215,93,142,.14);border-radius:14px}
 .qr-img{max-width:220px;width:100%;border-radius:8px}
+.qr-wrap--gcash{
+  margin:0 0 12px;
+  padding:14px;
+  border-style:solid;
+  background:linear-gradient(180deg,#fff 0%,#fff7fb 100%);
+  box-shadow:var(--shadow);
+}
+.qr-gcash{max-width:240px}
 
 .note-box{background:#f6eef7;border:1px solid rgba(215,93,142,.12);border-radius:14px;padding:10px 12px;color:#6d5a86;font-size:.8rem;line-height:1.55;text-align:center}
 
@@ -284,6 +292,8 @@ textarea.field-input{min-height:74px;resize:vertical}
   .gcash-card{padding:12px}
   .shipping-options{grid-template-columns:1fr 1fr}
   .upload-dropzone{padding:18px 14px}
+  .qr-wrap--gcash{padding:12px}
+  .qr-gcash{max-width:200px}
 }
 @media (min-width:1024px){
   .layout{padding-top:calc(var(--top-shell-height-desktop) + 28px)}
